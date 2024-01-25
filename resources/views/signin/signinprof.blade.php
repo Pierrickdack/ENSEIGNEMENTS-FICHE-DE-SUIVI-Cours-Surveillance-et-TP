@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../css/profsignin.css">
     </head>
     <body>
-        
+
             <!-- <img src="../Images/del.png" class="avatar"> -->
             <div class="container">
         <span class="big-circle"></span>
@@ -37,25 +37,31 @@
                 <span class="circle one"></span>
                 <span class="circle two"></span>
 
+                <form action="{{ route('enseignant.login') }}" method="POST">
+                    @csrf
 
-                <form action="contact.html">
-                    <h3 class="title">Sign In</h3><br>
+                    <h3 class="title">Connexion</h3><br>
                     <div class="input-container">
-                        <input type="text" name="name" class="input">
-                        <label for="">Username</label>
-                        <span>Username</span>
+                        <input type="text" name="nomEns" class="input">
+                        <label for="Nom">Nom</label>
+                        <span>Nom</span>
                     </div>
                     <div class="input-container">
-                        <input type="Password" name="email" class="input">
-                        <label for="">Password</label>
-                        <span>Password</span>
+                        <input type="email" name="emailEns" class="input">
+                        <label for="Email">Email</label>
+                        <span>Email</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="password" name="mdpEns" class="input">
+                        <label for="Mot de passe">Mot de passe</label>
+                        <span>Mot de passe</span>
                     </div><br><br>
                     <a href="#"><input type="submit" value="Connexion" class="btn"></a><br><br><br><br><br><br>
                     <div class="compte">
                         <a href="#">Mot de passe oublié ?</a><br><br>
                         <a href="#">Pas de compte ?</a>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

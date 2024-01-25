@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\AuthDelegueController;
+use App\Http\Controllers\AuthEnseignantController;
 
 
 
@@ -45,11 +46,12 @@ Route::get('/accueilDel', function () {
 
 
 Route::post('/delegue/accueil', [AuthDelegueController::class, 'login'])->name('delegue.login');
+Route::post('/enseignant/accueil', [AuthEnseignantController::class, 'login'])->name('enseignant.login');
 Route::post('/enregistrer-fiche', [FicheController::class, 'enregistrerFiche'])->name('enregistrer-fiche');
 
 // Routes du MenuList
 Route::get('/order', [OrderController::class, 'index'])->name('order');
-Route::get('/delegue', [DelegueController::class, 'index'])->name('delegue');
+Route::get('/delegue', [AuthDelegueController::class, 'index'])->name('delegue');
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');
 

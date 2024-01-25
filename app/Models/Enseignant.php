@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Delegue extends Authenticatable
+class Enseignant extends Authenticatable
 {
-    protected $table = 'delegues';
+    protected $table = 'enseignants';
 
     protected $fillable = [
-        'nameDel',
-        'matDel',
+        'nomEns',
+        'emailEns',
     ];
 
     protected $hidden = [
-        'mdpDel',
+        'mdpEns',
     ];
-
-    // Autres propriétés et méthodes du modèle Delegue
-
 }
-

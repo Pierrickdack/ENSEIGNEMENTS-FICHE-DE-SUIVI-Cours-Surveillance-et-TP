@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Delegue;
 use Illuminate\Http\Request;
-use App\Http\Requests\LogRequest;
+use App\Http\Requests\LogDelRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AuthDelegueController extends Controller
-{
+class AuthDelegueController extends Controller {
+
+    public function index() {
+        return view('delegue.accueil');
+    }
+
+    
     public function login(LogDelRequest $request) {
         $credentials = $request -> validated();
 
@@ -26,6 +31,6 @@ class AuthDelegueController extends Controller
         }
 
         toastr()->error('Identifiants invalides !!');
-        return back()->withInput()->withErrors(['name' => 'Identifiants invalides']);
+        return back()->withInput()->withErrors(['matDel' => 'Identifiants invalides']);
     }
 }

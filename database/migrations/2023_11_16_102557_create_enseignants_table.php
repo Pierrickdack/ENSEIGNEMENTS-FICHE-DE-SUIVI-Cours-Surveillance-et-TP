@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nomEns');
             $table->string('emailEns');
-            $table->string('numBurEns');
             $table->string('mdpEns');
+            $table->timestamps();
         });
     }
 
