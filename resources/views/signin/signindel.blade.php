@@ -41,7 +41,7 @@
                     <form action="{{ route('delegue.login') }}" method="POST">
                         @csrf
 
-                        <h3 class="title">Sign In</h3><br>
+                        <h3 class="title">Connexion</h3><br>
 
                         <div class="input-container">
                             <input type="text" name="matDel" class="input" required>
