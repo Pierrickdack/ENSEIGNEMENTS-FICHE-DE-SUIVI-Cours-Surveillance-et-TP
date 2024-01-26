@@ -11,6 +11,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\AuthDelegueController;
 use App\Http\Controllers\AuthEnseignantController;
+use App\Http\Controllers\AuthAdministrateurController;
 
 
 
@@ -42,11 +43,19 @@ Route::get('/accueilDel', function () {
     return view('delegue/accueil');
 })->name('accueilDel');
 
+Route::get('contact/delegue', function () {
+    return view('');
+});
 
 
 
+// Routes pour l'authentification des utilisateurs
 Route::post('/delegue/accueil', [AuthDelegueController::class, 'login'])->name('delegue.login');
 Route::post('/enseignant/accueil', [AuthEnseignantController::class, 'login'])->name('enseignant.login');
+Route::post('/administrateur/accueil', [AuthAdministrateurController::class, 'login'])->name('admin.login');
+
+
+// Routes pour les actions sur la fiche de suivi
 Route::post('/enregistrer-fiche', [FicheController::class, 'enregistrerFiche'])->name('enregistrer-fiche');
 
 // Routes du MenuList
@@ -55,14 +64,7 @@ Route::get('/delegue', [AuthDelegueController::class, 'index'])->name('delegue')
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');
 
-// Route::get('/analytics', [FicheController::class, 'index'])->name('analytics');
-// routes/web.php
 
-
-
-
-
-// Route::get('/analytics', [FicheController::class, 'index']);
 // Route pour afficher toutes les fiches
 Route::get('/fiches', [FicheController::class, 'showFiches'])->name('fiches.index');
 

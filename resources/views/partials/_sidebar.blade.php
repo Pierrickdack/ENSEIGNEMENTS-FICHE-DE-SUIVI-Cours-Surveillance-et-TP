@@ -11,7 +11,7 @@
             <li style="--bg:#f44336;" class="{{ request()->routeIs('delegue') ? 'active' : '' }}">
                 <a href="{{ route('delegue') }}">
                     <div class="icon"><i class="fa-solid fa-house"></i></div>
-                    <div class="text">Home</div>
+                    <div class="text">Dashboard</div>
                 </a>
             </li>
             <li style="--bg:#2196f3;" class="{{ request()->routeIs('analytics') ? 'active' : '' }}">

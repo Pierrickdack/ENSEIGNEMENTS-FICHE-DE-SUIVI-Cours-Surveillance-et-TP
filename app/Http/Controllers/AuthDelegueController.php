@@ -14,7 +14,7 @@ class AuthDelegueController extends Controller {
         return view('delegue.accueil');
     }
 
-    
+
     public function login(LogDelRequest $request) {
         $credentials = $request -> validated();
 

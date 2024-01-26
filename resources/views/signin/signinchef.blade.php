@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="../css/chefsignin.css">
     </head>
     <body>
-        
+
             <!-- <img src="../Images/del.png" class="avatar"> -->
             <div class="container">
         <span class="big-circle"></span>
@@ -37,24 +37,33 @@
                 <span class="circle two"></span>
 
 
-                <form action="contact.html">
-                    <h3 class="title">Sign In</h3><br>
+                <form action="{{ route('admin.login') }}" method="POST">
+                    @csrf
+
+                    <h3 class="title">Connexion</h3><br>
+
                     <div class="input-container">
-                        <input type="text" name="name" class="input">
-                        <label for="">Username</label>
-                        <span>Username</span>
+                        <input type="text" name="nomCD" class="input">
+                        <label for="nomCD">Nom</label>
+                        <span>Nom</span>
                     </div>
                     <div class="input-container">
-                        <input type="Password" name="email" class="input">
-                        <label for="">Password</label>
+                        <input type="email" name="emailCD" class="input">
+                        <label for="email">Email</label>
+                        <span>Email</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="password" name="mdpCD" class="input">
+                        <label for="mot de passe">Mot de passe</label>
                         <span>Password</span>
                     </div><br><br>
+
                     <a href="#"><input type="submit" value="Connexion" class="btn"></a><br><br><br><br><br><br>
                     <div class="compte">
                         <a href="#">Mot de passe oublié ?</a><br><br>
                         <a href="#">Pas de compte ?</a>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
