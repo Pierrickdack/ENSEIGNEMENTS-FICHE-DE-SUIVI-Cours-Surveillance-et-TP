@@ -8,7 +8,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DelegueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TableDelController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\TableProfController;
 use App\Http\Controllers\AuthDelegueController;
 use App\Http\Controllers\AuthEnseignantController;
 use App\Http\Controllers\AuthAdministrateurController;
@@ -19,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// Routes pour la connexion
 Route::get('/signin', function () {
     return view('signin/signindel');
 })->name('signin');
@@ -31,6 +34,7 @@ Route::get('/signinchef', function () {
     return view('signin/signinchef');
 })->name('signinchef');
 
+// Routes pour le délégué
 Route::post('/delegue', function () {
     return view('delegue/accueil');
 })->name('delegue');
@@ -57,6 +61,7 @@ Route::post('/administrateur/accueil', [AuthAdministrateurController::class, 'lo
 
 // Routes pour les actions sur la fiche de suivi
 Route::post('/enregistrer-fiche', [FicheController::class, 'enregistrerFiche'])->name('enregistrer-fiche');
+Route::delete('/fiches/{fiche}', [AnalyticsController::class, 'destroy'])->name('fiche.destroy');
 
 // Routes du MenuList
 Route::get('/order', [OrderController::class, 'index'])->name('order');
@@ -64,13 +69,31 @@ Route::get('/delegue', [AuthDelegueController::class, 'index'])->name('delegue')
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');
 
-
-// Route pour afficher toutes les fiches
-Route::get('/fiches', [FicheController::class, 'showFiches'])->name('fiches.index');
-
-// Route pour supprimer une fiche
-//Route::delete('/fiches/{fiche}', [FicheController::class, 'destroyFiche'])->name('fiches.destroy');
-
-Route::delete('/fiches/{fiche}', [AnalyticsController::class, 'destroy'])->name('fiche.destroy');
+// Route pour afficher les délégués
+Route::get('/delegues', [TableDelController::class, 'main'])->name('delegues.main');
+Route::get('/professeurs', [TableProfController::class, 'main'])->name('professeurs.main');
+// Route::get('/delegues/{delegue}/edit', [TableDelController::class, 'edit'])->name('delegues.edit');
+Route::delete('/delegues/{delegue}', [TableDelController::class, 'destroy'])->name('delegues.destroy');
+Route::delete('/professeurs/{professeur}', [TableProfController::class, 'destroy'])->name('enseignants.destroy');
 
 
+
+
+// Routes pour les actions du chef
+Route::get('/dashboard', function () {
+    return view('chef.index');
+})->name('Dashboard_chef');
+
+Route::get('/ajout/professeur', function () {
+    return view('chef.pages.examples.registerProf');
+})->name('ajout.professeur');
+
+Route::get('/ajout/delegue', function () {
+    return view('chef.pages.examples.registerDel');
+})->name('ajout.delegue');
+
+
+
+
+Route::post('/enregistrer-professeur', [AuthEnseignantController::class, 'store'])->name('enregistrer.professeur');
+Route::post('/enregistrer-delegue', [AuthDelegueController::class, 'store'])->name('enregistrer.delegue');

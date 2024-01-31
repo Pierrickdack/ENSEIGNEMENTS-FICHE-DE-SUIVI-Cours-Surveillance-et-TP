@@ -49,8 +49,9 @@ class ficheController extends Controller {
         // $fiche->signatureProf = $this->saveSignature(new SignatureProfBox(), 'signatureProfBox');
 
         // Enregistrez la fiche dans la base de données
-        toastr()->success("Sauvegarde Réussie !");
+
         $fiche->save();
+        toastr()->success("Sauvegarde Réussie !");
 
     }
 

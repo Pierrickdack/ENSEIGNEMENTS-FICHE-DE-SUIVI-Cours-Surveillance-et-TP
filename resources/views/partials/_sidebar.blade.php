@@ -42,7 +42,7 @@
                             <img src="{{ asset('asset/Images/del.png') }}">
                         </div>
                     </div>
-                    <div class="text">Kamela Pierrick Dack</div>
+                    <div class="text">{{ session('username') }}</div>
                 </a>
             </li>
             <li style="--bg:#333;">

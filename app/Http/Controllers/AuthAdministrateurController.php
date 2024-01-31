@@ -11,18 +11,18 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthAdministrateurController extends Controller {
     public function login(LogAdminRequest $request) {
-        $credentials = $request -> validated();
+        $credentials = $request->validated();
 
-        $admin = Administrateur::where([
-            'emailCD' => $credentials['emailCD'],
-        ])->first();
+        $admin = Administrateur::where('emailCD', $credentials['emailCD'])->first();
 
-        if ($admin && Hash::check($credentials['mdpCD'], $admin -> mdpCD)) {
-
+        if ($admin && Hash::check($credentials['mdpCD'], $admin->mdpCD)) {
             $request->session()->regenerate();
             toastr()->success("Connexion réussie !");
-            return redirect()->route('accueilDel');
 
+            $username = $admin->nomCD;
+
+            return redirect()->route('Dashboard_chef')->with('username', $username);
+            // return redirect()->route('dashboardChef');
         }
 
         toastr()->error('Identifiants invalides !!');
