@@ -157,6 +157,7 @@
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>Dashboard</p>
                                 </a>
+
                             </li>
 
                             <li class="nav-item">
@@ -169,14 +170,14 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('ajout.professeur') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
+                                        <a href="#" class="nav-link" data-toggle="modal" data-target="#profModal">
+                                            <i class="fas fa-chevron-right mr-2"></i>
                                             <p>Professeur</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('ajout.delegue') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
+                                        <a href="#" class="nav-link" data-toggle="modal" data-target="#delModal">
+                                            <i class="fas fa-chevron-right mr-2"></i>
                                             <p>Délégué</p>
                                         </a>
                                     </li>
@@ -400,9 +401,120 @@
                         </div>
                         <!-- /.row -->
                     </div><!-- /.container-fluid -->
+
+                    <!-- Modal pour le Délégué -->
+                    <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un délégué</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('enregistrer.delegue') }}" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="nameDel">Nom</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="nameDel" name="nameDel" placeholder="Nom">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-user"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="matDel">Matricule</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="matDel" name="matDel" placeholder="Matricule">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mdpDel">Mot de passe</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="mdpDel" name="mdpDel" placeholder="Mot de passe">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                                <label for="agreeTerms">Je confirme les informations</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal pour le Professeur -->
+                    <div class="modal fade" id="profModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un professeur</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('enregistrer.professeur') }}" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="nomEns">Nom du professeur</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="nomEns" name="nomEns" placeholder="Nom du professeur">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-user"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="emailEns">Email du professeur</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="emailEns" name="emailEns" placeholder="Email du professeur">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mdpEns">Mot de passe</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="mdpEns" name="mdpEns" placeholder="Mot de passe">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="agreeTerms" name="terms" value="agree">
+                                            <label class="form-check-label" for="agreeTerms">Je confirme les informations</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <!-- /.content -->
             </div>
+
+
             <!-- /.content-wrapper -->
             <footer class="main-footer">
                 <strong>Copyright &copy; 2023-2024 <a href="">ICT4D.uy1</a>.</strong>

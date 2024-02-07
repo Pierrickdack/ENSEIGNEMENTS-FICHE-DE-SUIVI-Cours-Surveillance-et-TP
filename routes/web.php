@@ -84,14 +84,6 @@ Route::get('/dashboard', function () {
     return view('chef.index');
 })->name('Dashboard_chef');
 
-Route::get('/ajout/professeur', function () {
-    return view('chef.pages.examples.registerProf');
-})->name('ajout.professeur');
-
-Route::get('/ajout/delegue', function () {
-    return view('chef.pages.examples.registerDel');
-})->name('ajout.delegue');
-
 
 
 
