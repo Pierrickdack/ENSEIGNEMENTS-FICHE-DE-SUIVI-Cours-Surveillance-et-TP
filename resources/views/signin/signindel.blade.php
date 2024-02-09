@@ -36,11 +36,8 @@
                     <span class="circle one"></span>
                     <span class="circle two"></span>
 
-
-
                     <form action="{{ route('delegue.login') }}" method="POST">
                         @csrf
-
                         <h3 class="title">Connexion</h3><br>
 
                         <div class="input-container">
@@ -62,7 +59,6 @@
                         </div><br><br>
 
                         <input type="submit" value="Connexion" class="btn">
-
                         <br><br><br><br><br><br>
 
                         <div class="compte">
@@ -74,7 +70,7 @@
                 </div>
             </div>
         </div>
-    <script src="../js/del.js"></script>
+    <script src="{{ asset('js/del.js') }}"></script>
 
     </body>
 </html>

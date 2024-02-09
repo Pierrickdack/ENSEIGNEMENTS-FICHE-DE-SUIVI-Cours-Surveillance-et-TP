@@ -1,5 +1,5 @@
 @extends('base_chef')
-@section('title', 'FOLLOW UP | Listes')
+@section('title', 'FOLLOW UP | Listes des délégués')
 
 
 

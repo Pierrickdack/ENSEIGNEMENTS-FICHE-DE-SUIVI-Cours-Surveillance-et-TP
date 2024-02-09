@@ -35,7 +35,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="{{ route('Dashboard_chef') }}" class="nav-link active">
+                    <a href="{{ route('counter.register') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
@@ -191,9 +191,39 @@
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
+        <!-- Logout Button -->
+       <!-- Logout Button -->
+       <div class="sidebar-footer">
+            <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#logoutModal">Logout</button>
+        </div>
     </div>
     <!-- /.sidebar -->
 </aside>
+
+<!-- Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation de déconnexion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir vous déconnecter ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                <form id="logoutForm" action="{{ route('admin.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Déconnexion</button>
+                </form>                    
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

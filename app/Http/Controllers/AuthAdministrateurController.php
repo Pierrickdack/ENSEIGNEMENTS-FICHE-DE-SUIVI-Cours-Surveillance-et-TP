@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrateur;
 use Illuminate\Http\Request;
-use App\Http\Requests\LogAdminRequest;
+use App\Models\Administrateur;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\LogAdminRequest;
+use Illuminate\Support\Facades\Session;
 
 
 class AuthAdministrateurController extends Controller {
@@ -27,5 +28,13 @@ class AuthAdministrateurController extends Controller {
 
         toastr()->error('Identifiants invalides !!');
         return back()->withInput()->withErrors(['emailCD' => 'Identifiants invalides']);
+    }
+
+    public function logout(Request $request) {
+
+        $request->session()->invalidate(); // Invalider la session actuelle
+        $request->session()->regenerateToken(); // Régénérer le jeton de session
+        toastr()->success('Déconnexion réussie !');
+        return redirect()->route('welcome'); // Redirection vers la page d'accueil
     }
 }

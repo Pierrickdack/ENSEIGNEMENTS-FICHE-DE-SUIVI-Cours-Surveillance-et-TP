@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Fiche;
 use Illuminate\Http\Request;
+use App\Models\Administrateur;
+use App\Http\Controllers\Controller;
+use App\Notifications\NouvelleFicheCoursNotification;
 // use App\Http\Controllers\SignatureDelegueBox;
 // use App\Http\Controllers\SignatureProfBox;
 
@@ -52,6 +55,19 @@ class ficheController extends Controller {
 
         $fiche->save();
         toastr()->success("Sauvegarde Réussie !");
+
+        //$chefId = auth()->user()->id;
+        $chefId = 1;
+
+        // Déclenchez la notification
+        $chef = Administrateur::find($chefId);
+    
+        // Vérifiez si l'administrateur a été trouvé
+        if ($chef) {
+            $chef->notify(new NouvelleFicheCoursNotification());
+        }
+
+        return redirect()->route('analytics');
 
     }
 

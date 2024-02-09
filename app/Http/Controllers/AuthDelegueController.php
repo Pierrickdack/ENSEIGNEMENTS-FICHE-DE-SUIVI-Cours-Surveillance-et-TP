@@ -10,13 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthDelegueController extends Controller {
 
-    public function index() {
-        return view('delegue.accueil');
-    }
-
 
     public function login(LogDelRequest $request) {
         $credentials = $request -> validated();
+
+        dd($request);
 
         $delegue = Delegue::where([
             'matDel' => $credentials['matDel'],

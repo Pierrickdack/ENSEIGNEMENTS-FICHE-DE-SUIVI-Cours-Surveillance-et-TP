@@ -12,6 +12,7 @@ use App\Http\Controllers\TableDelController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\TableProfController;
 use App\Http\Controllers\AuthDelegueController;
+use App\Http\Controllers\DashboardProfController;
 use App\Http\Controllers\AuthEnseignantController;
 use App\Http\Controllers\AuthAdministrateurController;
 
@@ -51,12 +52,22 @@ Route::get('contact/delegue', function () {
     return view('');
 });
 
+// Routes pour les actions du chef
+Route::get('/dashboard', function () {
+    return view('chef.index');
+})->name('Dashboard_chef');
+
+
 
 
 // Routes pour l'authentification des utilisateurs
 Route::post('/delegue/accueil', [AuthDelegueController::class, 'login'])->name('delegue.login');
 Route::post('/enseignant/accueil', [AuthEnseignantController::class, 'login'])->name('enseignant.login');
 Route::post('/administrateur/accueil', [AuthAdministrateurController::class, 'login'])->name('admin.login');
+Route::post('/administrateur/logout', [AuthAdministrateurController::class, 'logout'])->name('admin.logout');
+
+// comptes des identifiants
+Route::get('/administrateur/registration', [DashboardProfController::class, 'counterRegister'])->name('counter.register');
 
 
 // Routes pour les actions sur la fiche de suivi
@@ -77,15 +88,6 @@ Route::delete('/delegues/{delegue}', [TableDelController::class, 'destroy'])->na
 Route::delete('/professeurs/{professeur}', [TableProfController::class, 'destroy'])->name('enseignants.destroy');
 
 
-
-
-// Routes pour les actions du chef
-Route::get('/dashboard', function () {
-    return view('chef.index');
-})->name('Dashboard_chef');
-
-
-
-
+// Routes pour savegarder les nouveaux profs et délégués
 Route::post('/enregistrer-professeur', [AuthEnseignantController::class, 'store'])->name('enregistrer.professeur');
 Route::post('/enregistrer-delegue', [AuthDelegueController::class, 'store'])->name('enregistrer.delegue');
